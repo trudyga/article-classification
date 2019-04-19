@@ -2,16 +2,21 @@
   "name": "text_classificator",
   "version": "0.0.1",
   "description": "Text classification project",
-  "main": "index.js",
+  "main": "./src/server.js",
   "scripts": {
+    "start": "nodemon ./src/server.js",
     "test": "mocha -c ./src/**/*.test.js"
   },
   "author": "trudygajs@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "ukrstemmer": "^0.1.0",
+    "body-parser": "^1.18.3",
     "chai": "^4.2.0",
-    "mocha": "^6.1.3"
+    "express": "^4.16.4",
+    "mocha": "^6.1.3",
+    "ukrstemmer": "^0.1.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
 }

@@ -1,6 +1,7 @@
 const stopwordsUK = require("./resources/uk/stopwords_uk.json");
 const lematizationUK = require("./resources/uk/lemmatization_uk.json");
 const sentenceDelimeters = require("./resources/uk/sentenceDelimeters_uk.json");
+const stemmer = require("ukrstemmer");
 
 class TextPreprocessor {
   static removeNoisePatters(text) {
@@ -50,9 +51,10 @@ class TextPreprocessor {
     }
 
     return words.map(word => {
-      const foundPair = lematizationUK.find(pair => !!pair[word]);
+      const foundMatch =
+        lematizationUK[word] || lematizationUK[word.toLowerCase()];
 
-      return foundPair ? foundPair[word] : word;
+      return foundMatch || word;
     });
   }
 
@@ -66,7 +68,13 @@ class TextPreprocessor {
     );
   }
 
-  static handleTextNormalization(sentence) {}
+  static handleTextNormalization(words) {
+    if (!(words instanceof Array)) {
+      throw new Error("Only array of words supported");
+    }
+
+    return words.map(w => stemmer(w));
+  }
 }
 
 module.exports = TextPreprocessor;

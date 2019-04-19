@@ -154,6 +154,16 @@ describe("#handleTextLemmatization", () => {
     expect(actualLematizedWords).to.have.ordered.members(lemmatizedWords);
   });
 
+  it("Should replace words with correspondent from lematization vocabulary in any case", () => {
+    const words = ["Яблунь"];
+
+    const lemmatizedWords = ["яблуня"];
+
+    const actualLematizedWords = preprocessor.handleTextLemmatization(words);
+
+    expect(actualLematizedWords).to.have.ordered.members(actualLematizedWords);
+  });
+
   it("Should not modify word if there is not correspondent value in lematization vocabulary", () => {
     const words = ["thisDoesNotExist", "anotherEmptyWord"];
 
