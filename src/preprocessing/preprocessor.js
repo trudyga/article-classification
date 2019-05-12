@@ -15,7 +15,7 @@ class TextPreprocessor {
       .replace($hashtag, "");
   }
 
-  // possible improvement
+  // possible improvement replace () or "" or «» or long dashes  with spaces
   static replaceBracketsWithSpaces(text) {}
 
   static removeEmoji(text) {
