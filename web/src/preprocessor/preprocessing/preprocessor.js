@@ -21,7 +21,7 @@ class TextPreprocessor {
   static removeEmoji(text) {
     return text.replace(
       /([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
-      "",
+      ""
     );
   }
 
@@ -64,7 +64,7 @@ class TextPreprocessor {
     }
 
     return words.filter(
-      word => !stopwordsUK.some(stopWord => stopWord === word),
+      word => !stopwordsUK.some(stopWord => stopWord === word)
     );
   }
 

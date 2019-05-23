@@ -11,14 +11,14 @@ router.post("/", (req, res) => {
   let article = req.body.text;
 
   article = TextPreprocessor.removeNoisePatters(
-    TextPreprocessor.removeEmoji(article),
+    TextPreprocessor.removeEmoji(article)
   );
   const articleSentences = TextPreprocessor.splitBySentences(article);
   const articleWords = articleSentences
     .map(sentence => TextPreprocessor.splitByWords(sentence))
     .reduce(
       (totalWords, sentenceWords) => totalWords.concat(sentenceWords),
-      [],
+      []
     );
 
   console.log("articleWords", articleWords);

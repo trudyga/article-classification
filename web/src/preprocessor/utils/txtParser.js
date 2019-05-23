@@ -26,10 +26,10 @@ const mapToObject = wordPairs => {
 
 const lemmatizationPairs = (fileHandlerPromise => {
   const sourceLematization = path.resolve(
-    "./src/preprocessing/resources/uk/lemmatization_uk.txt",
+    "./src/preprocessing/resources/uk/lemmatization_uk.txt"
   );
   const destinationLematization = path.resolve(
-    "./src/preprocessing/resources/uk/lemmatization_uk.json",
+    "./src/preprocessing/resources/uk/lemmatization_uk.json"
   );
 
   console.log("Read file", sourceLematization);
@@ -38,7 +38,7 @@ const lemmatizationPairs = (fileHandlerPromise => {
     .open(sourceLematization, "r")
     .then(
       fileHandler =>
-        console.log("test") || fileHandler.readFile({ encoding: "utf-8" }),
+        console.log("test") || fileHandler.readFile({ encoding: "utf-8" })
     )
     .then(fileContents => fileContents.split(/\n/))
     .then(mapToObject)
@@ -49,12 +49,12 @@ const lemmatizationPairs = (fileHandlerPromise => {
           "Write to file",
           destinationLematization,
           "stringified Conent",
-          stringifiedContent.substr(0, 100),
+          stringifiedContent.substr(0, 100)
         );
         return fileHandler.writeFile(stringifiedContent, {
           encoding: "utf-8",
           mode: "0o666",
-          flag: "w",
+          flag: "w"
         });
       });
     });

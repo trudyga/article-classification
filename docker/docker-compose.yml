@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+  nginx:
+    container_name: nginx
+    image: classifier.nginx
+    build: ./nginx
+    links:
+      - web:web
+    ports: 
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /ssl:/ssl
+    environment:
+      - DOMAIN_NAME=article.analyzer.tech
+  web:
+    container_name: web
+    image: classifier.web
+    env_file: .env
+    build:
+      context: ../web
+      dockerfile: ../docker/server/Dockerfile
+    links:
+      - mongo
+      - analyzer
+    depends_on:
+      - mongo
+      - analyzer
+    ports: 
+      - "5000"
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017"
+  analyzer:
+    container_name: analyzer
+    image: classifier.analyzer
+    build:
+      context: ../analyzer
+      dockerfile: ../docker/analyzer/Dockerfile
+    ports:
+      - "3000"

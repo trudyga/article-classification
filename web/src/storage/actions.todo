@@ -1,0 +1,31 @@
+##Classification service
+
+Initialize server:
+1. Create default facets and identifiers
+
+
+Article processing workflow:
+// Get Text
+1. Receive article text for processing throught post request
+1.1. Add article to database
+
+// Preprocess text
+2. Run text preprocessing
+
+// Classify article
+3. For each supported classifier
+3.1 Run classification over article text
+3.2 Add result to entity
+
+// Store results
+4. Add classified entity to database
+
+// Notify prediction service of the successful text classification
+5. Notify prediction server by means of sending post request to it of the successful text classification
+
+** Data retrieval are available throught GraphQL server requests
+
+Subservices:
+* data storage service (containarized MongoDB)
+* neural network text classifier service (to classify text with neural networks) (python)
+* server (that unities everything and expose GraphQL API)

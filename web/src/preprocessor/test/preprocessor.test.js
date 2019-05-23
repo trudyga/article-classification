@@ -43,7 +43,7 @@ describe("#splitBySentences", () => {
     const parts = preprocessor.splitBySentences(text);
     expect(parts).to.have.members([
       "Перше завдання - намалювати кита на руці ручкою",
-      "Наступне - намалювати кита на руці лезом",
+      "Наступне - намалювати кита на руці лезом"
     ]);
     expect(parts).to.have.lengthOf(2);
   });
@@ -54,7 +54,7 @@ describe("#splitBySentences", () => {
     const parts = preprocessor.splitBySentences(text);
     expect(parts).to.have.ordered.members([
       "Перше завдання - намалювати кита на руці ручкою",
-      "Наступне - намалювати кита на руці лезом",
+      "Наступне - намалювати кита на руці лезом"
     ]);
     expect(parts).to.have.lengthOf(2);
   });
@@ -92,7 +92,7 @@ describe("#splitByWords", () => {
       "японським",
       "художником",
       "Мідорі",
-      "Хаясі",
+      "Хаясі"
     ];
 
     const splited = preprocessor.splitByWords(sentence);
@@ -140,7 +140,7 @@ describe("#handleTextLemmatization", () => {
 
     expect(() => preprocessor.handleTextLemmatization(sentence)).to.throw(
       Error,
-      "Only array of words supported",
+      "Only array of words supported"
     );
   });
 
@@ -168,7 +168,7 @@ describe("#handleTextLemmatization", () => {
     const words = ["thisDoesNotExist", "anotherEmptyWord"];
 
     expect(preprocessor.handleTextLemmatization(words)).to.have.ordered.members(
-      words,
+      words
     );
   });
 });
@@ -179,7 +179,7 @@ describe("#removeBreakWords", () => {
 
     expect(() => preprocessor.handleTextLemmatization(sentence)).to.throw(
       Error,
-      "Only array of words supported",
+      "Only array of words supported"
     );
   });
 
@@ -197,7 +197,7 @@ describe("#removeBreakWords", () => {
     const words = ["thisDoesNotExist", "anotherEmptyWord"];
 
     expect(preprocessor.handleTextLemmatization(words)).to.have.ordered.members(
-      words,
+      words
     );
   });
 });
