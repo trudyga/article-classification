@@ -4,8 +4,8 @@ const bodyParser = require("body-parser");
 const PreprocessorCtrl = require("./preprocessor/preprocessor.controller");
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: "1mb", extended: false }));
+app.use(bodyParser.json({ limit: "1mb" }));
 
 const port = 5000;
 

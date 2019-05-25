@@ -1,5 +1,8 @@
 {
-  "mochaExplorer.files": "src/**/*.test.js",
   "prettier.jsxSingleQuote": true,
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "python.pythonPath": "./analyzer/env/bin/python",
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.envFile": "${workspaceFolder}/analyzer/.env"
 }
