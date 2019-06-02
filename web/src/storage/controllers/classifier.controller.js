@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 
+const modelNames = require("../models/names.config");
 const ArticleModel = require("../models/article.model");
 const FacetModel = require("../models/facet.model");
 const IdentifierModel = require("../models/identifier.model");
 const ClassificationModel = require("../models/classification.model");
 const EntityModel = require("../models/entity.model");
 
-module.exports = function() {
-  async function addArticleToStorage(title, source, text) {
+class ClassifierCtrl {
+  static async addArticleToStorage(title, source, text) {
     const article = new ArticleModel({
       title,
       source,
@@ -17,44 +18,27 @@ module.exports = function() {
     return article.save();
   }
 
-  async function createFacet(name, identifiers) {
-    const identifierInstances = identifiers.map(
-      identifier => new IdentifierModel(identifier)
-    );
-
-    const facet = new FacetModel({
-      name,
-      identifiers: identifierInstances
-    });
-
-    return facet.save();
-  }
-
-  async function getFacet(name) {
-    const facet = await FacetModel.findOne({ name });
-
-    return facet;
-  }
-
-  async function createClassificationForIdentifier(
+  static async createClassificationForIdentifier(
     articleId,
     facetId,
     identifierName,
     precision,
-    isPositive
+    isPositive,
+    method = "svm"
   ) {
     const identifierClassfication = new ClassificationModel({
       facet: facetId,
       article: articleId,
       identifier: identifierName,
       precision,
-      isPositive
+      isPositive,
+      method
     });
 
     return identifierClassfication.save();
   }
 
-  async function createClassifiedEntity(
+  static async createClassifiedEntity(
     articleId,
     identifierClassificationIds,
     manualClassificationIds = []
@@ -68,11 +52,61 @@ module.exports = function() {
     return entity.save();
   }
 
-  return {
-    addArticleToStorage,
-    getFacet,
-    createFacet,
-    createClassificationForIdentifier,
-    createClassifiedEntity
-  };
-};
+  static async getEntitiesCreateAfterData(createdAfter) {
+    const entities = EntityModel.find({
+      updatedAt: {
+        $gte: createdAfter
+      }
+    })
+      .populate("article")
+      .populate({
+        path: "autoClassifications",
+        populate: [
+          {
+            path: "facet",
+            model: modelNames.FACET
+          }
+        ]
+      })
+      .populate({
+        path: "manualClassifications",
+        populate: [
+          {
+            path: "facet",
+            model: modelNames.FACET
+          }
+        ]
+      })
+      .sort("updatedAt");
+
+    return entities;
+  }
+
+  static async getEntityById(id) {
+    const entity = EntityModel.findById(id)
+      .populate("article")
+      .populate({
+        path: "autoClassifications",
+        populate: [
+          {
+            path: "facet",
+            model: modelNames.FACET
+          }
+        ]
+      })
+      .populate({
+        path: "manualClassifications",
+        populate: [
+          {
+            path: "facet",
+            model: modelNames.FACET
+          }
+        ]
+      })
+      .sort("updatedAt");
+
+    return entity;
+  }
+}
+
+module.exports = ClassifierCtrl;

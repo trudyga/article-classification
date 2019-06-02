@@ -4,14 +4,17 @@ const modelNames = require("./names.config");
 
 const Identifier = require("./identifier.model");
 
-const FacetSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true
+const FacetSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    identifiers: [Identifier.schema]
   },
-  identifiers: [Identifier.schema]
-});
+  { timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" } }
+);
 
 const Facet = mongoose.model(modelNames.FACET, FacetSchema);
 

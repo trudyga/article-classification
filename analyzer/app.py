@@ -11,7 +11,7 @@ port = 6000
 suicidePath = abspath("../resources/articles/suicide")
 generalPath = abspath("../resources/articles/general")
 
-preprocessorEndpoint = 'http://localhost:5000/article'
+preprocessorEndpoint = 'http://localhost:5000/api/article/preprocessor'
 
 print(suicidePath, generalPath, preprocessorEndpoint)
 suicideIdentifier = Identifier(

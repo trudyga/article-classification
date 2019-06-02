@@ -8,7 +8,7 @@ const facetsInitMigration = require("../migrations/facets-init.migration");
 const facetsConfig = require("../config/facets");
 
 describe("Facets Initialize Migration Test", () => {
-  beforeEach(done => connect(done));
+  before(done => connect(done));
 
   describe("Facet Creation test", () => {
     beforeEach(async () => {
