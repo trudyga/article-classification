@@ -9,8 +9,8 @@ const EntitySchema = new Schema({
     type: ObjectId,
     ref: modelNames.ARTICLE
   },
-  autoClassifications: [Classification],
-  manualClassifications: [Classification]
+  autoClassifications: [Classification.schema],
+  manualClassifications: [Classification.schema]
 });
 
 const Entity = mongoose.model(modelNames.ENTITY, EntitySchema);

@@ -9,12 +9,15 @@ const ClassificationSchema = new Schema({
     required: true
   },
   identifier: {
-    type: ObjectId,
-    ref: modelNames.IDENTIFIER,
+    type: String,
     required: true
   },
   precision: {
     type: Number,
+    required: true
+  },
+  isPositive: {
+    type: Boolean,
     required: true
   }
 });

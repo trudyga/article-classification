@@ -1,0 +1,45 @@
+[
+  {
+    "name": "suicide",
+    "identifiers": [
+      {
+        "name": "Positive",
+        "key": "suicide-positive"
+      },
+      {
+        "name": "Negative",
+        "key": "suicide-negative"
+      }
+    ]
+  },
+  {
+    "name": "emotions",
+    "identifiers": [
+      {
+        "name": "Negative",
+        "key": "emotion-negative"
+      },
+      {
+        "name": "Neutral",
+        "key": "emotion-neutral"
+      },
+      {
+        "name": "Positive",
+        "key": "emotion-positive"
+      }
+    ]
+  },
+  {
+    "name": "source",
+    "identifiers": [
+      {
+        "name": "News",
+        "key": "source-news"
+      },
+      {
+        "name": "Other",
+        "key": "source-key"
+      }
+    ]
+  }
+]

@@ -9,10 +9,11 @@ const IdentifierSchema = new Schema({
   },
   key: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   }
 });
 
-const Identifier = mongoose.Model(modelNames.IDENTIFIER, IdentifierSchema);
+const Identifier = mongoose.model(modelNames.IDENTIFIER, IdentifierSchema);
 
 module.exports = Identifier;
